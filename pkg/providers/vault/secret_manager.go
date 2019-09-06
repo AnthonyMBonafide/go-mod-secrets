@@ -98,6 +98,12 @@ func (c HttpSecretStoreManager) getAllKeys() (map[string]interface{}, error) {
 		return nil, err
 	}
 
+	data, success = data["data"].(map[string]interface{})
+	if !success {
+		err = fmt.Errorf("no data retrieved from secrets service")
+		return nil, err
+	}
+
 	return data, nil
 }
 
